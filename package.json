@@ -11,6 +11,15 @@
     "type": "git",
     "url": "git+https://github.com/Zenthurion/SmartBuildings.git"
   },
+  "nodemonConfig": {
+    "watch": [
+      "server",
+      "routes/*"
+    ],
+    "ignore": [
+      "node_modules/"
+    ]
+  }
   "author": "",
   "license": "ISC",
   "bugs": {
