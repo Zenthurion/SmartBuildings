@@ -4,7 +4,7 @@ var appRouter = (app) => {
         res.send(value.toString())
     })
     app.get('/', (req, res) => {
-        res.send("Hello world!")
+        res.send("Hello World!")
     })
 }
 
