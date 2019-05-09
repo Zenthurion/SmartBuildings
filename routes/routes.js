@@ -71,29 +71,38 @@ var schedule = {
 }
 
 var appRouter = (app) => {
+    app.get('/', (req, res) => {
+        res.send("Hello World!")
+    })
     app.get('/temp', (req, res) => {
         let value = Math.floor(Math.random() * 60) - 20
         res.send(value.toString())
     })
     app.get('/temperature/:min-:max', (req, res) => {
-        var max = req.params.max
-        var min = req.params.min
-        let value = Math.floor(Math.random() * (max-min)) - min
+        var max = parseInt(req.params.max)
+        var min = parseInt(req.params.min)
+
+        let value = Math.floor((Math.random() * (max-min)) + min)
         res.send(value.toString())
     })
-    app.get('/', (req, res) => {
-        res.send("Hello World!")
-    })
-    app.get('/schedule/:roomName/:time', (req, res) => {
-        var time = req.params.time
+    app.get('/schedule/:roomName/:day/:time', (req, res) => {
         var room = req.params.roomName
+        var day = req.params.day
+        var time = req.params.time
+
         if(schedule.hasOwnProperty(room)) {
-            if(time >= 0 && time < 24) {
-                res.send(schedule[room][time])
+            if(schedule[room].hasOwnProperty(day)){
+                if(time >= 0 && time < 24) {
+                    res.send('' + schedule[room][day][time])
+                    return
+                }
+                res.send('' + schedule[room][day])
                 return
             }
+            res.send('' + schedule[room])
+            return
         }
-        res.send('invalid parameters for room ' + room + ", and time " + time)
+        res.send(schedule)
     })
 }
 
