@@ -106,7 +106,7 @@ var appRouter = (app) => {
     })
     app.get('/xml', (req, res) => {
         //res.send('<xml><item>hey</item><item>ho</item><item>5</item><nested><other>hi</other></nested></xml>')
-        res.send('<state><time>1000</time><temperature>22</temperature><co2>400</co2><heatingPower>50</heatingPower><heatingConsumption>2000</heatingConsumption><ventilationPower>50</ventilationPower><ventilationConsumption>1200</ventilationConsumption></state>')
+        res.send('<state><time>1000</time><occupancy>11</occupancy><temperature>22</temperature><co2>400</co2><heatingPower>50</heatingPower><heatingConsumption>2000</heatingConsumption><ventilationPower>50</ventilationPower><ventilationConsumption>1200</ventilationConsumption></state>')
     })
     app.get('/schedule', (req, res) => {
         console.log(json2xml(schedule))
@@ -146,6 +146,11 @@ function Simulator() {
         state = initialState
         this.timeStep = timeStep
 
+
+        for(var i = 0; i < 20; i++) {
+            update(i, state)
+        }
+
     }
 
     function update(time, previousState){
@@ -153,17 +158,17 @@ function Simulator() {
         time += timeStep
         stepState.occupancy = occupancy(time, stepState)
         stepState.co2 = co2(time, stepState)
-
+        console.log(stepState.occupancy)
 
     }
 
     function occupancy(time, stepState) {
-        
+        return (Math.floor(Math.random() * 25) * time) % time
     }
 
     function co2(time, stepState) {
         var co2Coefficient = 5
-        var newCO2 = stepState.co2 + 0
+        stepState.co2 = stepState.co2 + (co2Coefficient * stepState.occupancy)
     }
 }
 
