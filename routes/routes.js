@@ -139,7 +139,7 @@ var initial = state = {
 }
 
 var sim = new Simulator()
-sim.simulate(state, 0,0,10)
+sim.run(state, 0,0,10)
 
 function Simulator() {
     
@@ -153,7 +153,7 @@ function Simulator() {
         volume: 75,
         occupancy: 0,
         temperature: 18,
-        co2: 100,
+        co2: 0.0004,
         ventilation: {
             fans: {
                 count: 3,
@@ -163,20 +163,17 @@ function Simulator() {
             }
         },
         heating: {
-            effect: 0
+            watts: 2000,
+            effect: false
         }
     }
 
     this.simulationStates = []
 
-    this.simulate = (initialState, from, to, timeStep) => {
+    this.run = (initialState, from, to, timeStep) => {
         this.state = initialState
         this.timeStep = timeStep
 
-
-        for(var i = 0; i < 20; i++) {
-            update(i, state)
-        }
 
     }
 
@@ -189,61 +186,57 @@ function Simulator() {
 
     }
 
+    function checkRules(stepState) {
+
+    }
+
     function occupancy(time, stepState) {
-        return (Math.floor(Math.random() * 25) * time / 60)
+        return (Math.floor(Math.random() * 25) * time)
     }
 
     function co2(time, stepState) {
-        var co2Coefficient = 5
-        stepState.co2 = stepState.co2 + (co2Coefficient * stepState.occupancy)
+        let q = stepState.occupancy * 0.1
+        let V = stepState.volume
+        let n = 3600 * 0.067 / V
+        let cj = 0.0004
+        let c0 = stepSize.co2
+        let co2 = ((q/(n*V))*1-(1/Math.exp(n*time))) + ((c0-cj)(1/Math.exp(n*time)))+cj
+        return co2
+    }
+
+    function transmissionHeatLoss(time, stepState) {
+        let U = 1
+        let A = (stepState.dim.x*stepState.dim.y * 2) + (stepState.dim.z * stepState.dim.y * 2)
+        let Ti = 20
+        let Te = Math.floor(Math.random() * 10) + 15
+        let t = time
+        
+        let Qtr = (U * A) * (Ti - Te)* t/1000
+        return Qtr
+    }
+    function internalHeatGain(time, stepState) {
+        let Af = stepState.dim.x * stepState.dim.y
+        let qint = 130 * stepState.occupancy / Af
+        let t = time
+
+        let Qint = qint * Af * t / 1000
+        return Qint 
+    }
+
+    function heating(time, stepState) {
+        return stepState.heating.effect ? stepState.heating.watts * time/1000 : 0
+    }
+
+    function heating(time, stepState) {
+        let heat = stepState.temperature - transmissionHeatLoss(time, stepState) + internalHeatGain(time, stepState)
+        heat += heating(time, stepState)
+        let tempCoefficient = 10
+        return heat * tempCoefficient
+    }
+
+    function consumption(time, stepState) {
+
     }
 }
-
-/*	This work is licensed under Creative Commons GNU LGPL License.
-
-	License: http://creativecommons.org/licenses/LGPL/2.1/
-   Version: 0.9
-	Author:  Stefan Goessner/2006
-	Web:     http://goessner.net/ 
-*/
-function json2xml(o, tab) {
-    var toXml = function(v, name, ind) {
-       var xml = "";
-       if (v instanceof Array) {
-          for (var i=0, n=v.length; i<n; i++)
-             xml += ind + toXml(v[i], name, ind+"\t") + "\n";
-       }
-       else if (typeof(v) == "object") {
-          var hasChild = false;
-          xml += ind + "<" + name;
-          for (var m in v) {
-             if (m.charAt(0) == "@")
-                xml += " " + m.substr(1) + "=\"" + v[m].toString() + "\"";
-             else
-                hasChild = true;
-          }
-          xml += hasChild ? ">" : "/>";
-          if (hasChild) {
-             for (var m in v) {
-                if (m == "#text")
-                   xml += v[m];
-                else if (m == "#cdata")
-                   xml += "<![CDATA[" + v[m] + "]]>";
-                else if (m.charAt(0) != "@")
-                   xml += toXml(v[m], m, ind+"\t");
-             }
-             xml += (xml.charAt(xml.length-1)=="\n"?ind:"") + "</" + name + ">";
-          }
-       }
-       else {
-          xml += ind + "<" + name + ">" + v.toString() +  "</" + name + ">";
-       }
-       return xml;
-    }, xml="";
-    for (var m in o)
-       xml += toXml(o[m], m, "");
-    return tab ? xml.replace(/\t/g, tab) : xml.replace(/\t|\n/g, "");
- }
- 
 
 module.exports = appRouter
