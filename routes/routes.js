@@ -105,6 +105,7 @@ var appRouter = (app) => {
         res.send(schedule)
     })
     app.get('/xml', (req, res) => {
+        console.log(req.body)
         //res.send('<xml><item>hey</item><item>ho</item><item>5</item><nested><other>hi</other></nested></xml>')
         res.send('<state><time>1000</time><occupancy>11</occupancy><temperature>22</temperature><co2>400</co2><heatingPower>50</heatingPower><heatingConsumption>2000</heatingConsumption><ventilationPower>50</ventilationPower><ventilationConsumption>1200</ventilationConsumption></state>')
     })
@@ -114,9 +115,35 @@ var appRouter = (app) => {
     })
 }
 
+var initial = state = {
+    dim: {
+        x: 5,
+        y: 5,
+        z: 3
+    }, 
+    volume: 75,
+    occupancy: 0,
+    temperature: 18,
+    co2: 100,
+    ventilation: {
+        fans: {
+            count: 3,
+            watts: 50,
+            ability: 550,
+            effect: 0
+        }
+    },
+    heating: {
+        effect: 0
+    }
+}
+
+var sim = new Simulator()
+sim.simulate(state, 0,0,10)
+
 function Simulator() {
     
-    this.timeStep
+    this.timeStep = 10
     this.state = {
         dim: {
             x: 5,
@@ -143,7 +170,7 @@ function Simulator() {
     this.simulationStates = []
 
     this.simulate = (initialState, from, to, timeStep) => {
-        state = initialState
+        this.state = initialState
         this.timeStep = timeStep
 
 
@@ -155,7 +182,7 @@ function Simulator() {
 
     function update(time, previousState){
         var stepState = JSON.parse(JSON.stringify(previousState))
-        time += timeStep
+        time += this.timeStep
         stepState.occupancy = occupancy(time, stepState)
         stepState.co2 = co2(time, stepState)
         console.log(stepState.occupancy)
@@ -163,7 +190,7 @@ function Simulator() {
     }
 
     function occupancy(time, stepState) {
-        return (Math.floor(Math.random() * 25) * time) % time
+        return (Math.floor(Math.random() * 25) * time / 60)
     }
 
     function co2(time, stepState) {
