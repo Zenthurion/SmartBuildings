@@ -104,8 +104,12 @@ var appRouter = (app) => {
         }
         res.send(schedule)
     })
+    app.get('/xml', (req, res) => {
+        res.send('<xml><item>hey</item><item>ho</item><item>5</item><nested><other>hi</other></nested></xml>')
+    })
     app.get('/schedule', (req, res) => {
-        res.send('' + json2xml(schedule))
+        console.log(json2xml(schedule))
+        res.send('JSON' + json2xml(schedule))
     })
 }
 
