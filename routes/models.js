@@ -15,11 +15,11 @@ function heatLossVentilation(state) {
 
 function heatLossTransmission(state) {
     let U = 1
-    let A = (state.dim.x * state.dim.y * 2) + (state.dim.z * state.dim.y * 2)
+    let A = (state.dim.x * state.dim.y * 2) + (state.dim.z * state.dim.y * 2) + (state.dim.x * state.dim.z * 2)
     let Ti = state.temperature
     let Te = state.outsideTemperature
 
-    let Qtr = (U * A) * (Ti - Te) / 1000
+    let Qtr = (U * A) * (Ti - Te)
 
     state.log.transmissionLoss = Qtr * (state.log.timestep / 60)
     return Qtr
@@ -29,7 +29,7 @@ function heatGainInternal(state) {
     let Af = state.dim.x * state.dim.y
     let qint = 130 * state.occupancy / Af
 
-    let Qint = qint * Af / 1000
+    let Qint = qint * Af
 
     state.log.internalGain = Qint * (state.log.timestep / 60)
     return Qint
@@ -52,7 +52,7 @@ function heatChange(state, timestep) {
     let ventilationLoss = -heatLossVentilation(state)
     let change = internalGain + applianceGain + transmissionLoss + ventilationLoss
     //console.log("CHANGE:  " + change)
-    return change * (timestep / 60)
+    return change * (timestep / 60) / 1000 // x/1000 -> to kWh
 }
 
 function co2(state, timestep) {

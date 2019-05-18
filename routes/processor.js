@@ -50,6 +50,8 @@ function Simulator() {
         //this.timestep = timestep
         season = _season
 
+        that.state.roomEnergy = services.wattsAndTemp.watts[30] * (timestep / 60)
+
         that.state.log.timestep = timestep
         prepareInitialState(that.state)
         printLogTitles(that.state)
@@ -80,9 +82,10 @@ function Simulator() {
         
         let heat = models.heatChange(state, timestep)
         state.log.heatChange = heat
-        
+        state.roomEnergy += heat
+
         let oldTemp = state.temperature
-        state.temperature = services.temperatureChange(state.temperature, heat, timestep)
+        state.temperature = services.temperatureChange(state.temperature, state.roomEnergy, timestep)
         state.log.tChange = state.temperature - oldTemp
         state.consumption = models.consumption(state, timestep)
         
@@ -127,10 +130,13 @@ function Simulator() {
             if (state.temperature < state.rules.temperature.occupied.min && heatingState !== 'heating') {
                 state.appliances.heatpump.on = 'heating'
                 logger.info("Temperature low > heatpump set to heating")
-            } else if (state.temperature < state.rules.temperature.occupied.ideal && heatingState !== 'off') {
+            } else if (state.temperature < state.rules.temperature.occupied.ideal - 1 && heatingState === 'cooling') {
                 state.appliances.heatpump.on = 'off'
-                logger.info("Temperature acceptable > heatpump turned off")
-            } else if (state.temperature > state.rules.temperature.occupied.max && heatingState !== 'cooling') {
+                logger.info("Temperature less acceptable > heatpump set to off")
+            } else if (state.temperature > state.rules.temperature.occupied.ideal && heatingState === 'heating') {
+                state.appliances.heatpump.on = 'off'
+                logger.info("Temperature acceptable > heatpump set to off")
+            }  else if (state.temperature > state.rules.temperature.occupied.max && heatingState !== 'cooling') {
                 state.appliances.heatpump.on = 'cooling'
                 logger.info("Temperature too high > heatpump set to cooling")
             }
@@ -138,9 +144,12 @@ function Simulator() {
             if (state.temperature < state.rules.temperature.unoccupied.min && heatingState !== 'heating') {
                 state.appliances.heatpump.on = 'heating'
                 logger.info("Temperature low > heatpump set to heating")
-            } else if (state.temperature < state.rules.temperature.unoccupied.ideal && heatingState !== 'off') {
+            } else if (state.temperature < state.rules.temperature.unoccupied.ideal - 1 && heatingState === 'cooling') {
                 state.appliances.heatpump.on = 'off'
-                logger.info("Temperature acceptable > heatpump turned off")
+                logger.info("Temperature less acceptable > heatpump set to off")
+            } else if (state.temperature > state.rules.temperature.unoccupied.ideal && heatingState === 'heating') {
+                state.appliances.heatpump.on = 'off'
+                logger.info("Temperature acceptable > heatpump set to off")
             } else if (state.temperature > state.rules.temperature.occupied.max && heatingState !== 'cooling') {
                 state.appliances.heatpump.on = 'cooling'
                 logger.info("Temperature too high > heatpump set to cooling")

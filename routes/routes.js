@@ -38,6 +38,7 @@ var state = {
     outsideTemperature: 18,
     co2: 0.0004,
     consumption: 0,
+    roomEnergy: 0,
     appliances: {
         ventilation: {
             fans: {
@@ -48,7 +49,7 @@ var state = {
             on: false
         },
         heatpump: {
-            watts: 500,
+            watts: 1500,
             on: 'off' // 'heating' 'cooling'
         }
     },
@@ -62,7 +63,7 @@ var state = {
             unoccupied: {
                 max: 26,
                 ideal: 19,
-                min: 16
+                min: 18
             }
         },
         co2: {
@@ -90,12 +91,13 @@ var state = {
     }
 }
 
-var timestep = 5
+var timestep = 30
 var days = 1
 var hours = 24 * days
 var duration = 60 * hours // in minutes
 
 var runner = processor.Runner
-runner.run(state, duration, timestep, 'summer')
+runner.run(state, duration, timestep, 'winter')
+//runner.run(state, duration, timestep, 'summer')
 
 module.exports = appRouter

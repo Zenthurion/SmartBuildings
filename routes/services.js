@@ -170,16 +170,10 @@ function occupancy(elapsed) {
 
 function temperatureChange(currentTemperature, newHeating, timestep) {
     newHeating /= timestep / 60 // reverse timestep accounting
-    let oldHeating = wattsAndTemp.watts[0]
-    for (let i = 0; i < wattsAndTemp.temperature.length; i++) {
-        if (wattsAndTemp.temperature[i] > currentTemperature) {
-            oldHeating = wattsAndTemp.watts[i]
-            break
-        }
-    }
+
     let newTemp = wattsAndTemp.temperature[wattsAndTemp.temperature.length - 1]
     for (let i = 0; i < wattsAndTemp.temperature.length; i++) {
-        if (wattsAndTemp.watts[i] > oldHeating + newHeating) {
+        if (wattsAndTemp.watts[i] > newHeating) {
             newTemp = wattsAndTemp.temperature[i]
             break
         }
@@ -193,7 +187,7 @@ function heatpumpProduction(consumption, heatingType, ti, to) {
     // let modifier = (heatingType === 'heating' ? 1 :
     // (heatingType === 'cooling' ? -1 : 0))
     // return consumption * cop
-    return consumption * .05 * (heatingType === 'heating' ? 1 : (heatingType === 'cooling' ? -1 : 0))
+    return consumption * 5 * (heatingType === 'heating' ? 1 : (heatingType === 'cooling' ? -1 : 0))
     // Need to revise the cop formula
 }
 
@@ -201,5 +195,6 @@ module.exports = {
     temperatureChange: temperatureChange,
     heatpumpProduction: heatpumpProduction,
     occupancy: occupancy,
-    forecastTemperature: forecastTemperature
+    forecastTemperature: forecastTemperature,
+    wattsAndTemp: wattsAndTemp
 }

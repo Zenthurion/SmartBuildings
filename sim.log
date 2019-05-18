@@ -4930,3 +4930,152 @@ info: 5
 2019-05-16T18:47:21.625Z: Temperature acceptable > heatpump turned off
 2019-05-16T18:47:21.625Z: Temperature low > heatpump set to heating
 2019-05-16T18:47:21.626Z: Temperature acceptable > heatpump turned off
+2019-05-18T10:48:41.683Z: 
+> Running simulation for 1440 minutes in  season with a timestep of 5
+2019-05-18T10:48:41.699Z: Temperature low > heatpump set to heating
+2019-05-18T10:48:41.699Z: Temperature acceptable > heatpump turned off
+2019-05-18T10:48:41.699Z: Temperature low > heatpump set to heating
+2019-05-18T10:48:41.700Z: Temperature acceptable > heatpump turned off
+2019-05-18T10:48:41.700Z: Temperature low > heatpump set to heating
+2019-05-18T10:48:41.701Z: Temperature acceptable > heatpump turned off
+2019-05-18T10:48:41.701Z: Temperature low > heatpump set to heating
+2019-05-18T10:48:41.701Z: Temperature acceptable > heatpump turned off
+2019-05-18T10:48:41.706Z: Temperature too high > heatpump set to cooling
+2019-05-18T10:49:05.755Z: 
+> Running simulation for 1440 minutes in  season with a timestep of 5
+2019-05-18T10:49:05.770Z: Temperature low > heatpump set to heating
+2019-05-18T10:49:05.770Z: Temperature acceptable > heatpump turned off
+2019-05-18T10:49:05.771Z: Temperature low > heatpump set to heating
+2019-05-18T10:49:05.771Z: Temperature acceptable > heatpump turned off
+2019-05-18T10:49:05.771Z: Temperature low > heatpump set to heating
+2019-05-18T10:49:05.772Z: Temperature acceptable > heatpump turned off
+2019-05-18T10:49:05.772Z: Temperature low > heatpump set to heating
+2019-05-18T10:49:05.772Z: Temperature acceptable > heatpump turned off
+2019-05-18T10:49:05.777Z: Temperature too high > heatpump set to cooling
+2019-05-18T10:57:26.746Z: 
+> Running simulation for 1440 minutes in  season with a timestep of 1
+2019-05-18T10:57:26.796Z: Temperature low > heatpump set to heating
+2019-05-18T10:57:26.796Z: Temperature acceptable > heatpump turned off
+2019-05-18T10:57:26.797Z: Temperature low > heatpump set to heating
+2019-05-18T10:57:26.797Z: Temperature acceptable > heatpump turned off
+2019-05-18T10:57:26.797Z: Temperature low > heatpump set to heating
+2019-05-18T10:57:26.798Z: Temperature acceptable > heatpump turned off
+2019-05-18T10:57:26.798Z: Temperature low > heatpump set to heating
+2019-05-18T10:57:26.798Z: Temperature acceptable > heatpump turned off
+2019-05-18T10:57:26.799Z: Temperature too high > heatpump set to cooling
+2019-05-18T10:57:36.805Z: 
+> Running simulation for 1440 minutes in  season with a timestep of 1
+2019-05-18T10:57:36.856Z: Temperature low > heatpump set to heating
+2019-05-18T10:57:36.856Z: Temperature acceptable > heatpump turned off
+2019-05-18T10:57:36.856Z: Temperature low > heatpump set to heating
+2019-05-18T10:57:36.857Z: Temperature acceptable > heatpump turned off
+2019-05-18T10:57:36.857Z: Temperature low > heatpump set to heating
+2019-05-18T10:57:36.857Z: Temperature acceptable > heatpump turned off
+2019-05-18T10:57:36.857Z: Temperature low > heatpump set to heating
+2019-05-18T10:57:36.858Z: Temperature acceptable > heatpump turned off
+2019-05-18T10:57:36.858Z: Temperature too high > heatpump set to cooling
+2019-05-18T10:59:43.969Z: 
+> Running simulation for 1440 minutes in  season with a timestep of 10
+2019-05-18T10:59:43.978Z: Temperature low > heatpump set to heating
+2019-05-18T10:59:43.979Z: Temperature acceptable > heatpump turned off
+2019-05-18T10:59:43.979Z: Temperature low > heatpump set to heating
+2019-05-18T10:59:43.979Z: Temperature acceptable > heatpump turned off
+2019-05-18T10:59:43.980Z: Temperature low > heatpump set to heating
+2019-05-18T10:59:43.980Z: Temperature acceptable > heatpump turned off
+2019-05-18T10:59:43.980Z: Temperature low > heatpump set to heating
+2019-05-18T10:59:43.981Z: Temperature acceptable > heatpump turned off
+2019-05-18T10:59:43.986Z: Temperature too high > heatpump set to cooling
+2019-05-18T11:01:49.700Z: 
+> Running simulation for 1440 minutes in  season with a timestep of 30
+2019-05-18T11:01:49.706Z: Temperature low > heatpump set to heating
+2019-05-18T11:01:49.706Z: Temperature acceptable > heatpump turned off
+2019-05-18T11:01:49.707Z: Temperature low > heatpump set to heating
+2019-05-18T11:01:49.707Z: Temperature acceptable > heatpump turned off
+2019-05-18T11:01:49.707Z: Temperature low > heatpump set to heating
+2019-05-18T11:01:49.708Z: Temperature acceptable > heatpump turned off
+2019-05-18T11:01:49.708Z: Temperature low > heatpump set to heating
+2019-05-18T11:01:49.709Z: Temperature acceptable > heatpump turned off
+2019-05-18T11:07:59.335Z: 
+> Running simulation for 1440 minutes in  season with a timestep of 60
+2019-05-18T11:07:59.343Z: Temperature low > heatpump set to heating
+2019-05-18T11:07:59.344Z: Temperature acceptable > heatpump turned off
+2019-05-18T11:07:59.344Z: Temperature low > heatpump set to heating
+2019-05-18T11:07:59.345Z: Temperature acceptable > heatpump turned off
+2019-05-18T11:07:59.346Z: Temperature low > heatpump set to heating
+2019-05-18T11:07:59.346Z: Temperature acceptable > heatpump turned off
+2019-05-18T12:25:41.865Z: 
+> Running simulation for 1440 minutes in  season with a timestep of 30
+2019-05-18T12:25:41.869Z: Temperature too high > heatpump set to cooling
+2019-05-18T12:25:48.203Z: 
+> Running simulation for 1440 minutes in  season with a timestep of 30
+2019-05-18T12:25:48.208Z: Temperature too high > heatpump set to cooling
+2019-05-18T12:38:47.082Z: 
+> Running simulation for 1440 minutes in  season with a timestep of 30
+2019-05-18T12:38:56.318Z: Temperature low > heatpump set to heating
+2019-05-18T12:38:56.319Z: Temperature acceptable > heatpump turned off
+2019-05-18T12:38:56.320Z: Temperature low > heatpump set to heating
+2019-05-18T12:38:56.321Z: Temperature acceptable > heatpump turned off
+2019-05-18T12:38:56.322Z: Temperature low > heatpump set to heating
+2019-05-18T12:38:56.322Z: Temperature acceptable > heatpump turned off
+2019-05-18T12:38:56.323Z: Temperature low > heatpump set to heating
+2019-05-18T12:38:56.324Z: Temperature acceptable > heatpump turned off
+2019-05-18T12:38:56.324Z: Temperature low > heatpump set to heating
+2019-05-18T12:38:56.325Z: Temperature acceptable > heatpump turned off
+2019-05-18T12:38:56.326Z: Temperature low > heatpump set to heating
+2019-05-18T12:38:56.326Z: Temperature acceptable > heatpump turned off
+2019-05-18T12:38:56.327Z: Temperature low > heatpump set to heating
+2019-05-18T12:38:56.327Z: Temperature acceptable > heatpump turned off
+2019-05-18T12:38:56.328Z: Temperature low > heatpump set to heating
+2019-05-18T12:38:56.328Z: Temperature acceptable > heatpump turned off
+2019-05-18T12:38:56.329Z: Temperature low > heatpump set to heating
+2019-05-18T12:38:56.329Z: Temperature acceptable > heatpump turned off
+2019-05-18T12:38:56.330Z: Temperature low > heatpump set to heating
+2019-05-18T12:38:56.331Z: Temperature acceptable > heatpump turned off
+2019-05-18T12:38:56.331Z: Temperature low > heatpump set to heating
+2019-05-18T12:38:56.332Z: Temperature acceptable > heatpump turned off
+2019-05-18T12:38:56.333Z: Temperature low > heatpump set to heating
+2019-05-18T12:38:56.333Z: Temperature acceptable > heatpump turned off
+2019-05-18T12:38:56.334Z: Temperature low > heatpump set to heating
+2019-05-18T12:38:56.334Z: Temperature acceptable > heatpump turned off
+2019-05-18T12:38:56.335Z: Temperature low > heatpump set to heating
+2019-05-18T12:38:56.336Z: Temperature acceptable > heatpump turned off
+2019-05-18T12:38:56.337Z: Temperature low > heatpump set to heating
+2019-05-18T12:38:56.338Z: Temperature acceptable > heatpump turned off
+2019-05-18T12:38:56.338Z: Temperature low > heatpump set to heating
+2019-05-18T12:38:56.339Z: Temperature acceptable > heatpump turned off
+2019-05-18T13:26:17.469Z: 
+> Running simulation for 1440 minutes in  season with a timestep of 30
+2019-05-18T13:26:17.473Z: Temperature low > heatpump set to heating
+2019-05-18T13:26:17.479Z: Temperature acceptable > heatpump set to off
+2019-05-18T13:33:48.018Z: 
+> Running simulation for 1440 minutes in  season with a timestep of 30
+2019-05-18T13:33:48.025Z: Temperature low > heatpump set to heating
+2019-05-18T13:33:48.030Z: Temperature acceptable > heatpump set to off
+2019-05-18T13:33:48.030Z: Temperature low > heatpump set to heating
+2019-05-18T13:33:48.031Z: Temperature acceptable > heatpump set to off
+2019-05-18T13:35:21.823Z: 
+> Running simulation for 1440 minutes in  season with a timestep of 30
+2019-05-18T13:35:21.831Z: Temperature low > heatpump set to heating
+2019-05-18T13:35:21.833Z: Temperature acceptable > heatpump set to off
+2019-05-18T13:36:37.633Z: 
+> Running simulation for 1440 minutes in  season with a timestep of 30
+2019-05-18T13:36:37.639Z: Temperature low > heatpump set to heating
+2019-05-18T13:36:37.641Z: Temperature acceptable > heatpump set to off
+2019-05-18T13:39:03.686Z: 
+> Running simulation for 1440 minutes in  season with a timestep of 30
+2019-05-18T13:39:03.693Z: Temperature low > heatpump set to heating
+2019-05-18T13:39:03.695Z: Temperature acceptable > heatpump set to off
+2019-05-18T13:42:16.231Z: 
+> Running simulation for 1440 minutes in  season with a timestep of 30
+2019-05-18T13:42:16.237Z: Temperature low > heatpump set to heating
+2019-05-18T13:42:16.238Z: Temperature acceptable > heatpump set to off
+2019-05-18T13:42:16.239Z: Temperature low > heatpump set to heating
+2019-05-18T13:42:16.239Z: Temperature acceptable > heatpump set to off
+2019-05-18T13:42:16.240Z: Temperature low > heatpump set to heating
+2019-05-18T13:42:16.241Z: Temperature acceptable > heatpump set to off
+2019-05-18T13:43:07.743Z: 
+> Running simulation for 1440 minutes in  season with a timestep of 30
+2019-05-18T13:43:07.748Z: Temperature low > heatpump set to heating
+2019-05-18T13:43:07.749Z: Temperature acceptable > heatpump set to off
+2019-05-18T13:43:07.752Z: Temperature low > heatpump set to heating
+2019-05-18T13:43:07.755Z: Temperature acceptable > heatpump set to off
