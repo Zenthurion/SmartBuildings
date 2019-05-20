@@ -28,7 +28,7 @@ const dataCollector = winston.createLogger({
     format: format.printf(info => `${info.message}`),
     transports: [
         new winston.transports.File({
-            filename: 'data.csv'
+            filename: 'data' + new Date().getTime() + '.csv'
         })
     ]
 })
@@ -50,7 +50,7 @@ function Simulator() {
         //this.timestep = timestep
         season = _season
 
-        that.state.roomEnergy = services.wattsAndTemp.watts[30] * (timestep / 60)
+        that.state.roomEnergy = services.wattsAndTemp.watts[30]
 
         that.state.log.timestep = timestep
         prepareInitialState(that.state)

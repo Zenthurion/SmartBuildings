@@ -2,6 +2,7 @@ const processor = require('./processor.js')
 const services = require('./services.js')
 
 
+
 var appRouter = (app) => {
     app.get('/', (req, res) => {
         res.send("Hello World!")
@@ -62,7 +63,7 @@ var state = {
     outsideTemperature: 18,
     co2: 0.0004,
     consumption: 0,
-    roomEnergy: 0,
+    roomEnergy: 5217,
     appliances: {
         ventilation: {
             fans: {
@@ -73,7 +74,7 @@ var state = {
             on: false
         },
         heatpump: {
-            watts: 1500,
+            watts: 3000,
             on: 'off' // 'heating' 'cooling'
         }
     },
@@ -91,8 +92,8 @@ var state = {
             }
         },
         co2: {
-            max: 0.008,
-            ideal: 0.004
+            max: 0.0008,
+            ideal: 0.0006
         }
     },
     log: {
@@ -115,7 +116,7 @@ var state = {
     }
 }
 
-var timestep = 30
+var timestep = 10
 var days = 1
 var hours = 24 * days
 var duration = 60 * hours // in minutes

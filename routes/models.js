@@ -7,19 +7,18 @@ function heatLossVentilation(state) {
     let ti = state.temperature
     let t0 = state.outsideTemperature
 
-    let Hv = (1 - .3) * (cp * p * qv * (ti - t0))
+    let Hv = cp * p * qv * (ti - t0)
     
     state.log.ventilationLoss = (state.appliances.ventilation.on ? Hv : 0) * (state.log.timestep / 60)
     return state.appliances.ventilation.on ? Hv : 0
 }
 
 function heatLossTransmission(state) {
-    let U = 1
-    let A = (state.dim.x * state.dim.y * 2) + (state.dim.z * state.dim.y * 2) + (state.dim.x * state.dim.z * 2)
+    let A = (state.dim.x * state.dim.y * 4.04) + (state.dim.x * state.dim.y * 0.248) + (state.dim.z * state.dim.y * 2 * 0.248) + (state.dim.x * state.dim.z * 2 * 0.248)
     let Ti = state.temperature
     let Te = state.outsideTemperature
 
-    let Qtr = (U * A) * (Ti - Te)
+    let Qtr = (A) * (Ti - Te)
 
     state.log.transmissionLoss = Qtr * (state.log.timestep / 60)
     return Qtr
@@ -52,19 +51,39 @@ function heatChange(state, timestep) {
     let ventilationLoss = -heatLossVentilation(state)
     let change = internalGain + applianceGain + transmissionLoss + ventilationLoss
     //console.log("CHANGE:  " + change)
-    return change * (timestep / 60) / 1000 // x/1000 -> to kWh
+    return change / 1000 * (timestep / 60) // x/1000 -> to kWh
 }
 
 function co2(state, timestep) {
     let time = timestep / 60
-    let q = state.occupancy * 0.1
     let V = state.volume
-    let n = 3600 * (state.appliances.ventilation.on ? state.appliances.ventilation.fans.m3s * state.appliances.ventilation.fans.count : 1) / V
-    let cj = 0.0004
+    let q = state.occupancy * 0.1
     let c0 = state.co2
-    let co2 = Math.max(((q / (n * V)) * 1 - (1 / Math.exp(n * time))) + ((c0 - cj) * (1 / Math.exp(n * time))) + cj, 0)
 
-    return co2
+    if(!state.appliances.ventilation.on) {
+        var res = (q / V * time) + c0
+        return res
+    } else {
+        let n = 3600 * (state.appliances.ventilation.fans.m3s * state.appliances.ventilation.fans.count) / V
+        let cj = 0.0004
+
+        let a = (q / (n * V))
+        let b = (1 / Math.exp(n * time))
+        let c = (1 / Math.exp(n * time))
+        let co2 = (a * (1 - b)) + ((c0 - cj) * c) + cj
+        console.log(co2)
+        return co2
+    }
+
+
+
+
+
+
+
+
+
+
 }
 
 function consumption(state, timestep) {
