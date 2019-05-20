@@ -1,13 +1,37 @@
 const processor = require('./processor.js')
+const services = require('./services.js')
 
 
 var appRouter = (app) => {
     app.get('/', (req, res) => {
         res.send("Hello World!")
     })
-    app.get('/temp', (req, res) => {
-        let value = Math.floor(Math.random() * 60) - 20
-        res.send(value.toString())
+
+    // var expected = {
+    //     timestep: 0,
+    //     cycle: 0,
+    //     season: 'summer' // 'winter'
+    // }
+    app.get('/forecast/', (req, res) => { //?timestep=:timestep&cycle=:cycle
+        if(!(req.params.hasOwnProperty('timestep') && req.params.hasOwnProperty('cycle') && req.params.hasOwnProperty('season'))) res.send('invalid parameters')
+        const timestep = req.params.timestep
+        const cylce = req.params.cycle
+        const season = req.params.season
+
+        const temp = services.forecastTemperature(timestep * cylce, season)
+        res.send(temp.toString())
+    })
+    // var expected = {
+    //     timestep: 0,
+    //     cycle: 0
+    // }
+    app.get('/schedule', (req, res) => {
+        if(!(req.params.hasOwnProperty('timestep') && req.params.hasOwnProperty('cycle'))) res.send('invalid parameters')
+        const timestep = req.params.timestep
+        const cylce = req.params.cycle
+
+        const occupancy = services.occupancy(timestep * cylce)
+        res.send(occupancy.toString())
     })
     app.get('/temperature/:min-:max', (req, res) => {
         var max = parseInt(req.params.max)
