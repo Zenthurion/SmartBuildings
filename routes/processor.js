@@ -35,9 +35,9 @@ const dataCollector = winston.createLogger({
 
 
 
-var sim = new Simulator()
+//var sim = new Simulator()
 
-function Simulator() {
+module.exports = function Simulator() {
     let simulationStates = []
     let elapsed = 0
     let that = this
@@ -63,6 +63,18 @@ function Simulator() {
             that.state.log.hour = Math.floor(elapsed / 60.0) % 24
         }
     }
+    this.init = (initialState, timestep, _season) => {
+        logger.info('\n> Initializing simulation ' + season + ' season with a timestep of ' + timestep)
+        that.state = JSON.parse(JSON.stringify(initialState))
+        //this.timestep = timestep
+        season = _season
+
+        that.state.roomEnergy = services.wattsAndTemp.watts[30] / 1000
+
+        that.state.log.timestep = timestep
+        prepareInitialState(that.state)
+        printLogTitles(that.state)
+    }
 
     function prepareInitialState(state) {
         state.outsideTemperature = services.forecastTemperature(0, season)
@@ -74,7 +86,7 @@ function Simulator() {
         let state = JSON.parse(stringState)
         simulationStates.push(state)
 
-        checkRules(state)
+        //checkRules(state)
 
         state.occupancy = services.occupancy(elapsed)
         state.outsideTemperature = services.forecastTemperature(elapsed, season)
@@ -179,7 +191,8 @@ function Simulator() {
     //     return state.temperature + temp
     // }
 }
-
+/*
 module.exports = {
     Runner: sim
 }
+*/

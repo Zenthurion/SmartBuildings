@@ -7,6 +7,6 @@ app.use(bodyParser.urlencoded({extended:true}))
 
 var routes = require('./routes/routes.js')(app)
 
-// var server = app.listen(65021, () => {
-//     console.log('server is running')
-// })
+ var server = app.listen(65021, () => {
+     console.log('server is running')
+ })

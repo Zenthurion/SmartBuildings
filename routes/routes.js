@@ -1,7 +1,6 @@
 const processor = require('./processor.js')
 const services = require('./services.js')
-
-
+const bodyParser = require('body-parser')
 
 var appRouter = (app) => {
     app.get('/', (req, res) => {
@@ -41,9 +40,67 @@ var appRouter = (app) => {
         let value = Math.floor((Math.random() * (max-min)) + min)
         res.send(value.toString())
     })
-    app.get('/xml', (req, res) => {
-        console.log(req.body)
-        res.send('<state><time>1000</time><occupancy>11</occupancy><temperature>22</temperature><co2>400</co2><heatingPower>50</heatingPower><heatingConsumption>2000</heatingConsumption><ventilationPower>50</ventilationPower><ventilationConsumption>1200</ventilationConsumption></state>')
+    // create application/x-www-form-urlencoded parser
+    var urlencodedParser = bodyParser.urlencoded({ extended: true })
+    
+    // POST /login gets urlencoded bodies
+    app.post('/login', urlencodedParser, function (req, res) {
+      res.send('welcome, ' + req.body.username)
+    })
+    
+var sim = new processor()
+let elapsed = 0
+
+    app.get('/xml', urlencodedParser, (req, res) => {
+        var cycle = parseInt(req.query.cycle);
+        var timeStep = parseInt(req.query.timeStep);
+        var ventilationState = req.query.ventilationState;
+        var heatingState = req.query.heatingState;
+        var roomEnergy = parseInt(req.query.roomEnergy);
+
+        if (cycle == 0 || (sim.state.log.elapsed + timestep >= 7*DAY))
+        {
+            sim.init(state, timeStep, 'winter')
+        }
+        else
+        {
+            sim.state.appliances.ventilation.on = ventilationState
+            sim.state.appliances.heatpump.on = heatingState
+            sim.state.roomEnergy = roomEnergy
+        }
+        
+
+        sim.update(timeStep)
+        sim.state.log.elapsed += timestep
+        sim.state.log.hour = Math.floor(sim.state.log.elapsed  / 60.0) % 24
+        
+        var ventConsumption = sim.state.appliances.ventilation.watts * sim.state.appliances.ventilation.count;
+        if (ventilationState === "off")
+        {
+            ventConsumption = 0;
+        }
+        var heatConsumption = sim.state.appliances.heatpump.watts;
+        if (heatingState === "off")
+        {
+            heatConsumption = 0;
+        }
+
+        var result = {
+            "roomEnergy": sim.state.roomEnergy,
+            "occupancy": sim.state.occupancy,
+            "temperature": sim.state.temperature,
+            "co2": sim.state.co2,
+            "ventilationPowerConsumption": ventConsumption,
+            "heatingPowerConsumption": heatConsumption
+        }
+        var xml = "<state>";
+        
+        for (var key in result) {
+            if (result.hasOwnProperty(key)) {
+                xml+="<"+key+">"+result[key]+"</"+key+">";
+            }
+        }
+        res.send(xml+'</state>')
     })
     app.get('/schedule', (req, res) => {
         console.log(json2xml(schedule))
@@ -125,13 +182,16 @@ var state = {
     }
 }
 
+var HOUR = 60;
+var DAY = 24*HOUR;
+
 var timestep = 10
 var days = 1
 var hours = 24 * days
 var duration = 60 * hours // in minutes
 
-var runner = processor.Runner
-runner.run(state, duration, timestep, 'winter')
+//var runner = processor.Runner
+//runner.run(state, duration, timestep, 'winter')
 //runner.run(state, duration, timestep, 'summer')
 
 module.exports = appRouter
