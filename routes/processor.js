@@ -86,8 +86,8 @@ module.exports = function Simulator() {
 
         //checkRules(state)
 
-        state.occupancy = services.occupancy(that.state.log.elapsed)
-        state.outsideTemperature = services.forecastTemperature(that.state.log.elapsed, season)
+        state.occupancy = services.occupancy(state.log.elapsed)
+        state.outsideTemperature = services.forecastTemperature(state.log.elapsed, season)
         state.co2 = models.co2(state, timestep)
         
         let heat = models.heatChange(state, timestep)
