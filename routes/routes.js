@@ -55,7 +55,7 @@ var sim = new processor()
         var timeStep = parseInt(req.query.timeStep);
         var ventilationState = req.query.ventilationState;
         var heatingState = req.query.heatingState;
-        var roomEnergy = parseInt(req.query.roomEnergy);
+        var roomEnergy = parseFloat(req.query.roomEnergy);
 
         if (cycle == 0 || (sim.state.log.elapsed + timestep >= 7*DAY))
         {
@@ -130,7 +130,7 @@ var state = {
             on: false
         },
         heatpump: {
-            watts: 1300,
+            watts: 1000,
             on: 'off' // 'heating' 'cooling'
         }
     },
