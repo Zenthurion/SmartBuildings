@@ -71,24 +71,14 @@ function co2(state, timestep) {
         let b = (1 / Math.exp(n * time))
         let c = (1 / Math.exp(n * time))
         let co2 = (a * (1 - b)) + ((c0 - cj) * c) + cj
-        console.log(co2)
+        
         return co2
     }
-
-
-
-
-
-
-
-
-
-
 }
 
 function consumption(state, timestep) {
     let heating = state.appliances.heatpump.on !== 'off' ? state.appliances.heatpump.watts : 0
-    let ventilation = state.appliances.ventilation.on ? state.appliances.ventilation.fans * state.appliances.ventilation.watts : 0
+    let ventilation = state.appliances.ventilation.on ? state.appliances.ventilation.fans.count * state.appliances.ventilation.fans.watts : 0
     //let passiveUse = state.occupancy > 0 ? (state.occupancy * 15) + 100 : 0 // Users + lighting
     let wh = (heating + ventilation/* + passiveUse*/) * (timestep / 60)
     return wh

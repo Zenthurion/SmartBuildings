@@ -1,0 +1,64 @@
+2019-05-20T12:45:52.695Z: 
+> Running simulation for 1440 minutes in  season with a timestep of 10
+2019-05-20T12:45:52.701Z: Temperature low > heatpump set to heating
+2019-05-20T12:45:52.705Z: Temperature acceptable > heatpump set to off
+2019-05-20T12:45:52.710Z: CO2 too high > turning on ventilation
+2019-05-20T12:45:52.711Z: Temperature low > heatpump set to heating
+2019-05-20T12:45:52.711Z: CO2 too at ideal threshold > turning off ventilation
+2019-05-20T12:45:52.713Z: CO2 too high > turning on ventilation
+2019-05-20T12:45:52.713Z: CO2 too at ideal threshold > turning off ventilation
+2019-05-20T12:45:52.714Z: CO2 too high > turning on ventilation
+2019-05-20T12:45:52.714Z: CO2 too at ideal threshold > turning off ventilation
+2019-05-20T12:45:52.715Z: CO2 too high > turning on ventilation
+2019-05-20T12:45:52.715Z: CO2 too at ideal threshold > turning off ventilation
+2019-05-20T12:45:52.716Z: CO2 too high > turning on ventilation
+2019-05-20T12:45:52.717Z: CO2 too at ideal threshold > turning off ventilation
+2019-05-20T12:45:52.717Z: CO2 too high > turning on ventilation
+2019-05-20T12:45:52.718Z: CO2 too at ideal threshold > turning off ventilation
+2019-05-20T12:45:52.718Z: CO2 too high > turning on ventilation
+2019-05-20T12:45:52.723Z: CO2 too at ideal threshold > turning off ventilation
+2019-05-20T12:45:52.724Z: CO2 too high > turning on ventilation
+2019-05-20T12:45:52.726Z: CO2 too at ideal threshold > turning off ventilation
+2019-05-20T12:45:52.727Z: CO2 too high > turning on ventilation
+2019-05-20T12:45:52.727Z: CO2 too at ideal threshold > turning off ventilation
+2019-05-20T12:45:52.728Z: CO2 too high > turning on ventilation
+2019-05-20T12:45:52.730Z: CO2 too at ideal threshold > turning off ventilation
+2019-05-20T12:45:52.730Z: CO2 too high > turning on ventilation
+2019-05-20T12:45:52.731Z: CO2 too at ideal threshold > turning off ventilation
+2019-05-20T12:45:52.732Z: CO2 too high > turning on ventilation
+2019-05-20T12:45:52.732Z: CO2 too at ideal threshold > turning off ventilation
+2019-05-20T12:45:52.733Z: CO2 too high > turning on ventilation
+2019-05-20T12:45:52.734Z: Temperature acceptable > heatpump set to off
+2019-05-20T12:45:52.735Z: CO2 too at ideal threshold > turning off ventilation
+2019-05-20T12:46:30.436Z: 
+> Running simulation for 1440 minutes in  season with a timestep of 10
+2019-05-20T12:46:30.441Z: Temperature low > heatpump set to heating
+2019-05-20T12:46:30.444Z: Temperature acceptable > heatpump set to off
+2019-05-20T12:46:30.447Z: CO2 too high > turning on ventilation
+2019-05-20T12:46:30.447Z: Temperature low > heatpump set to heating
+2019-05-20T12:46:30.447Z: CO2 too at ideal threshold > turning off ventilation
+2019-05-20T12:46:30.447Z: CO2 too high > turning on ventilation
+2019-05-20T12:46:30.448Z: CO2 too at ideal threshold > turning off ventilation
+2019-05-20T12:46:30.448Z: CO2 too high > turning on ventilation
+2019-05-20T12:46:30.449Z: CO2 too at ideal threshold > turning off ventilation
+2019-05-20T12:46:30.449Z: CO2 too high > turning on ventilation
+2019-05-20T12:46:30.449Z: CO2 too at ideal threshold > turning off ventilation
+2019-05-20T12:46:30.450Z: CO2 too high > turning on ventilation
+2019-05-20T12:46:30.450Z: CO2 too at ideal threshold > turning off ventilation
+2019-05-20T12:46:30.450Z: CO2 too high > turning on ventilation
+2019-05-20T12:46:30.451Z: CO2 too at ideal threshold > turning off ventilation
+2019-05-20T12:46:30.451Z: CO2 too high > turning on ventilation
+2019-05-20T12:46:30.454Z: CO2 too at ideal threshold > turning off ventilation
+2019-05-20T12:46:30.455Z: CO2 too high > turning on ventilation
+2019-05-20T12:46:30.456Z: CO2 too at ideal threshold > turning off ventilation
+2019-05-20T12:46:30.457Z: CO2 too high > turning on ventilation
+2019-05-20T12:46:30.457Z: CO2 too at ideal threshold > turning off ventilation
+2019-05-20T12:46:30.458Z: CO2 too high > turning on ventilation
+2019-05-20T12:46:30.459Z: CO2 too at ideal threshold > turning off ventilation
+2019-05-20T12:46:30.459Z: CO2 too high > turning on ventilation
+2019-05-20T12:46:30.459Z: CO2 too at ideal threshold > turning off ventilation
+2019-05-20T12:46:30.460Z: CO2 too high > turning on ventilation
+2019-05-20T12:46:30.460Z: CO2 too at ideal threshold > turning off ventilation
+2019-05-20T12:46:30.460Z: CO2 too high > turning on ventilation
+2019-05-20T12:46:30.461Z: Temperature acceptable > heatpump set to off
+2019-05-20T12:46:30.461Z: CO2 too at ideal threshold > turning off ventilation

@@ -50,7 +50,7 @@ const weather = {
 const schedule = {
     meetingRoom: {
         monday: [
-            0, 0, 0, 0, 0, 0, 0, 0, 10, 3, 1, 15, 15, 0, 4, 0, 0, 1, 2, 0, 0, 0, 0, 0, 0
+            0, 0, 0, 0, 0, 0, 0, 0, 5, 3, 8, 8, 9, 8, 8, 3, 7, 5, 6, 0, 0, 0, 0, 0, 0
         ],
         tuesday: [
             0, 0, 0, 0, 0, 0, 0, 0, 11, 3, 7, 7, 6, 1, 2, 2, 5, 5, 8, 0, 0, 0, 0, 0, 0
@@ -65,7 +65,7 @@ const schedule = {
             0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 4, 6, 15, 7, 14, 8, 4, 2, 8, 0, 0, 0, 0, 0, 0
         ],
         saturday: [
-            0, 0, 0, 0, 0, 0, 0, 0, 5, 3, 8, 8, 9, 8, 8, 3, 7, 5, 6, 0, 0, 0, 0, 0, 0
+            0, 0, 0, 0, 0, 0, 0, 0, 10, 3, 1, 15, 15, 0, 4, 0, 0, 1, 2, 0, 0, 0, 0, 0, 0
         ],
         sunday: [
             0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 9, 8, 1, 5, 2, 4, 9, 7, 7, 0, 0, 0, 0, 0, 0
@@ -173,7 +173,7 @@ function temperatureChange(currentTemperature, newHeating, timestep) {
 
     let newTemp = wattsAndTemp.temperature[wattsAndTemp.temperature.length - 1]
     for (let i = 0; i < wattsAndTemp.temperature.length; i++) {
-        if (wattsAndTemp.watts[i] > newHeating) {
+        if (wattsAndTemp.watts[i] / 1000 > newHeating) {
             newTemp = wattsAndTemp.temperature[i]
             break
         }

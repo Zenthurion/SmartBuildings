@@ -74,7 +74,7 @@ var state = {
             on: false
         },
         heatpump: {
-            watts: 3000,
+            watts: 500,
             on: 'off' // 'heating' 'cooling'
         }
     },
@@ -95,6 +95,15 @@ var state = {
             max: 0.0008,
             ideal: 0.0006
         }
+    },
+    override: {
+        heat: {
+            start: 0,
+            end: 0,
+            //end: 480,
+            type: 'heating'
+        }
+
     },
     log: {
         timestep: 10,
