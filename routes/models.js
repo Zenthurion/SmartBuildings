@@ -14,7 +14,10 @@ function heatLossVentilation(state) {
 }
 
 function heatLossTransmission(state) {
-    let A = (state.dim.x * state.dim.y * 4.04) + (state.dim.x * state.dim.y * 0.248) + (state.dim.z * state.dim.y * 2 * 0.248) + (state.dim.x * state.dim.z * 2 * 0.248)
+    let A = (state.dim.x * state.dim.y * 1.04) + // floor
+            (state.dim.x * state.dim.y * 0.189) +  // ceiling
+            (state.dim.z * state.dim.y * 2 * 0.189) +  // wall a+b
+            (state.dim.x * state.dim.z * 2 * 0.189)    // wall c+d
     let Ti = state.temperature
     let Te = state.outsideTemperature
 

@@ -74,7 +74,7 @@ var state = {
             on: false
         },
         heatpump: {
-            watts: 500,
+            watts: 1000,
             on: 'off' // 'heating' 'cooling'
         }
     },
@@ -98,7 +98,8 @@ var state = {
     },
     override: {
         heat: {
-            start: 0,
+            start:0,
+            //start: 180,
             end: 0,
             //end: 480,
             type: 'heating'
@@ -106,7 +107,7 @@ var state = {
 
     },
     log: {
-        timestep: 10,
+        timestep: 1,
         elapsed: 0,
         hour: 0,
         ti: 0,
@@ -125,7 +126,7 @@ var state = {
     }
 }
 
-var timestep = 10
+var timestep = 1
 var days = 1
 var hours = 24 * days
 var duration = 60 * hours // in minutes
