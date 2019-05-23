@@ -67,7 +67,7 @@ module.exports = function Simulator() {
         //this.timestep = timestep
         season = _season
 
-        that.state.roomEnergy = services.wattsAndTemp.watts[30] / 1000
+        that.state.roomEnergy = services.wattsAndTemp.watts[30] / 60
 
         that.state.log.timestep = timestep
         prepareInitialState(that.state)

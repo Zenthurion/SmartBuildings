@@ -171,15 +171,23 @@ function occupancy(elapsed) {
 function temperatureChange(currentTemperature, newHeating, timestep) {
     //newHeating /= timestep / 60 // reverse timestep accounting
 
-    let newTemp = wattsAndTemp.temperature[wattsAndTemp.temperature.length - 1]
-    for (let i = 0; i < wattsAndTemp.temperature.length; i++) {
-        if (wattsAndTemp.watts[i] / 1000 > newHeating) {
-            newTemp = wattsAndTemp.temperature[i]
-            break
-        }
-    }
+    // let newTemp = wattsAndTemp.temperature[wattsAndTemp.temperature.length - 1]
+    // for (let i = 0; i < wattsAndTemp.temperature.length; i++) {
+    //     if (wattsAndTemp.watts[i] / 1000 > newHeating) {
+    //         newTemp = wattsAndTemp.temperature[i]
+    //         break
+    //     }
+    // }
 
-    return newTemp
+    var base = 5252 / 60
+    var diff = newHeating - base
+    var changeRate = 0.0018 * 60
+    var res = diff / changeRate
+    temp = 20 + (res / 10)
+
+    return temp
+
+    //return newTemp
 }
 
 function heatpumpProduction(consumption, heatingType, ti, to) {
