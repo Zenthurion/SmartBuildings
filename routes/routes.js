@@ -73,7 +73,7 @@ var sim = new processor()
         sim.state.log.elapsed += timestep
         sim.state.log.hour = Math.floor(sim.state.log.elapsed  / 60.0) % 24
         
-        var ventConsumption = sim.state.appliances.ventilation.watts * sim.state.appliances.ventilation.count;
+        var ventConsumption = sim.state.appliances.ventilation.fans.watts * sim.state.appliances.ventilation.fans.count;
         if (ventilationState === "off")
         {
             ventConsumption = 0;
