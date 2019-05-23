@@ -130,7 +130,7 @@ var state = {
             on: false
         },
         heatpump: {
-            watts: 1000,
+            watts: 1300,
             on: 'off' // 'heating' 'cooling'
         }
     },
