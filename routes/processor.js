@@ -50,7 +50,7 @@ function Simulator() {
         //this.timestep = timestep
         season = _season
 
-        that.state.roomEnergy = services.wattsAndTemp.watts[30] / 1000
+        that.state.roomEnergy = services.wattsAndTemp.watts[30] / 60
 
         that.state.log.timestep = timestep
         prepareInitialState(that.state)
@@ -85,8 +85,11 @@ function Simulator() {
         state.roomEnergy += heat
 
         let oldTemp = state.temperature
-        state.temperature = services.temperatureChange(state.temperature, state.roomEnergy, timestep)
+        state.temperature = services.temperatureChange2(state.roomEnergy)
         state.log.tChange = state.temperature - oldTemp
+        
+        let newHeat = services.temperatureChange2(state.roomEnergy)
+        console.log(state.temperature + " - " + newHeat)
         state.consumption = models.consumption(state, timestep)
         
         updateLog(state)
@@ -126,6 +129,15 @@ function Simulator() {
 
         let heatingState = state.appliances.heatpump.on
 
+        if(state.log.elapsed >= state.override.heat.start && state.log.elapsed < state.override.heat.end && state.override.heat.type === 'heating' && state.temperature < state.rules.temperature.occupied.ideal) {
+            console.log("keeping heating on")
+            state.appliances.heatpump.on = 'heating'
+        } 
+
+        if(state.temperature > state.rules.temperature.occupied.max) {
+            console.log("errr....")
+        }
+        
         if (state.occupancy > 0) {
             if (state.temperature < state.rules.temperature.occupied.min && heatingState !== 'heating') {
                 state.appliances.heatpump.on = 'heating'
@@ -134,15 +146,22 @@ function Simulator() {
                 state.appliances.heatpump.on = 'off'
                 logger.info("Temperature less acceptable > heatpump set to off")
             } else if (state.temperature > state.rules.temperature.occupied.ideal && heatingState === 'heating') {
-                if(state.log.elapsed >= state.override.heat.start && state.log.elapsed < state.override.heat.end && state.override.heat.type === 'heating') {
+                if(state.log.elapsed >= state.override.heat.start && state.log.elapsed < state.override.heat.end && state.override.heat.type === 'heating' && state.temperature < state.rules.temperature.occupied.ideal) {
                     console.log("keeping heating on")
                 } else {
                     state.appliances.heatpump.on = 'off'
                     logger.info("Temperature acceptable > heatpump set to off")
                 }
             }  else if (state.temperature > state.rules.temperature.occupied.max && heatingState !== 'cooling') {
-                state.appliances.heatpump.on = 'cooling'
-                logger.info("Temperature too high > heatpump set to cooling")
+                if(state.override.heat.end > state.log.elapsed || season == 'winter') {
+                    state.appliances.heatpump.on = 'off'
+               } else { 
+                   
+                    state.appliances.heatpump.on = 'cooling'
+                    logger.info("Temperature too high > heatpump set to cooling")
+                    
+                }
+                
             }
         } else {
             if (state.temperature < state.rules.temperature.unoccupied.min && heatingState !== 'heating') {
@@ -152,15 +171,19 @@ function Simulator() {
                 state.appliances.heatpump.on = 'off'
                 logger.info("Temperature less acceptable > heatpump set to off")
             } else if (state.temperature > state.rules.temperature.unoccupied.ideal && heatingState === 'heating') {
-                if(state.log.elapsed >= state.override.heat.start && state.log.elapsed < state.override.heat.end && state.override.heat.type === 'heating') {
+                if(state.log.elapsed >= state.override.heat.start && state.log.elapsed < state.override.heat.end && state.override.heat.type === 'heating' && state.temperature < state.rules.temperature.occupied.ideal) {
                     console.log("keeping heating on")
                 } else {
                     state.appliances.heatpump.on = 'off'
                     logger.info("Temperature acceptable > heatpump set to off")
                 }
             } else if (state.temperature > state.rules.temperature.occupied.max && heatingState !== 'cooling') {
+                if(state.override.heat.end > state.log.elapsed || season == 'winter') {
+                    state.appliances.heatpump.on = 'off'
+               } else { 
                 state.appliances.heatpump.on = 'cooling'
                 logger.info("Temperature too high > heatpump set to cooling")
+               }
             }
         }
     }

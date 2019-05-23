@@ -182,17 +182,28 @@ function temperatureChange(currentTemperature, newHeating, timestep) {
     return newTemp
 }
 
+function temperatureChange2(newHeating) {
+    var base = 5252 / 60
+    var diff = newHeating - base
+    var changeRate = 0.0018 * 60
+    var res = diff / changeRate
+    temp = 20 + (res / 10)
+
+    return temp
+}
+
 function heatpumpProduction(consumption, heatingType, ti, to) {
-    // let cop = ti-to != 0 ? (ti / (ti - to)) - modifier : 0
-    // let modifier = (heatingType === 'heating' ? 1 :
-    // (heatingType === 'cooling' ? -1 : 0))
-    // return consumption * cop
+    let modifier = (heatingType === 'heating' ? 0 : (heatingType === 'cooling' ? -1 : 0))
+    let cop = ti-to != 0 ? (22 / (22 - to)) + modifier: 0
+    //console.log("ti: " + 22 + ", to: " + to + ", cop: " + cop)
+    //return consumption * cop
     return consumption * 2.5 * (heatingType === 'heating' ? 1 : (heatingType === 'cooling' ? -1 : 0))
     // Need to revise the cop formula
 }
 
 module.exports = {
     temperatureChange: temperatureChange,
+    temperatureChange2: temperatureChange2,
     heatpumpProduction: heatpumpProduction,
     occupancy: occupancy,
     forecastTemperature: forecastTemperature,
