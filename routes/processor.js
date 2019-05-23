@@ -39,7 +39,6 @@ const dataCollector = winston.createLogger({
 
 module.exports = function Simulator() {
     let simulationStates = []
-    let elapsed = 0
     let that = this
     let state = {}
     let season = ''
@@ -56,11 +55,10 @@ module.exports = function Simulator() {
         prepareInitialState(that.state)
         printLogTitles(that.state)
         //dataCollector.info('elapsed,hour,temperature,outside temperature,co2,occupancy,consumption,heating,ventilation')
-        while (elapsed < minutes) {
+        while (that.state.log.elapsed < minutes) {
             that.update(timestep)
-            elapsed += timestep
-            that.state.log.elapsed = elapsed
-            that.state.log.hour = Math.floor(elapsed / 60.0) % 24
+            that.state.log.elapsed += timestep
+            that.state.log.hour = Math.floor(that.state.log.elapsed / 60.0) % 24
         }
     }
     this.init = (initialState, timestep, _season) => {
@@ -88,8 +86,8 @@ module.exports = function Simulator() {
 
         //checkRules(state)
 
-        state.occupancy = services.occupancy(elapsed)
-        state.outsideTemperature = services.forecastTemperature(elapsed, season)
+        state.occupancy = services.occupancy(that.state.log.elapsed)
+        state.outsideTemperature = services.forecastTemperature(that.state.log.elapsed, season)
         state.co2 = models.co2(state, timestep)
         
         let heat = models.heatChange(state, timestep)

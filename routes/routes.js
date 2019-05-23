@@ -49,7 +49,6 @@ var appRouter = (app) => {
     })
     
 var sim = new processor()
-let elapsed = 0
 
     app.get('/xml', urlencodedParser, (req, res) => {
         var cycle = parseInt(req.query.cycle);
