@@ -99,9 +99,9 @@ var state = {
     override: {
         heat: {
             start:0,
-            //start: 180,
+            start: 180,
             end: 0,
-            //end: 480,
+            end: 480,
             type: 'heating'
         }
 
