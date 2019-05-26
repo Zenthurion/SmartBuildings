@@ -53,7 +53,7 @@ var sim = new processor()
     app.get('/xml', urlencodedParser, (req, res) => {
         var cycle = parseInt(req.query.cycle);
         var timeStep = parseInt(req.query.timeStep);
-        var ventilationState = req.query.ventilationState;
+        var ventilationState = req.query.ventilationState === "on";
         var heatingState = req.query.heatingState;
         var roomEnergy = parseFloat(req.query.roomEnergy);
 
@@ -68,7 +68,6 @@ var sim = new processor()
             sim.state.roomEnergy = roomEnergy
         }
         
-
         sim.update(timeStep)
         sim.state.log.elapsed += timestep
         sim.state.log.hour = Math.floor(sim.state.log.elapsed  / 60.0) % 24
